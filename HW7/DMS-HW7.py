@@ -16,3 +16,21 @@ for line in fileinput.input(infile):
 cursor.insertRow([arcpy.Polygon(array)])
 fileinput.close()
 del cursor
+
+## EXE. 8 Challenge #2
+import arcpy
+from arcpy import env
+env.workspace = "f:/Python/Homework/Data/Exercise08"
+fc = "Hawaii.shp"
+cursor = arcpy.da.SearchCursor(fc, ["SHAPE@"])
+length = 0
+
+for row in cursor:
+    partnum = 0
+    length = 0
+    for part in row[0]:
+        poly = arcpy.Polygon(part)
+        print("Part {0} area: {1}".format(partnum, poly.area))
+        print("Part {0} perimeter: {1}".format(partnum, poly.length))
+        
+        partnum += 1
