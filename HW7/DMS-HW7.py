@@ -75,4 +75,16 @@ if __name__== '__main__':
     import doctest
     doctest.testmod()
 
+##EXE 10 Challenge 1
+import arcpy
+mxd = arcpy.mapping.MapDocument("f:/python/Homework/Data/Exercise10/Austin_TX.mxd")
+dfs = arcpy.mapping.ListDataFrames(mxd)
+addLayer = arcpy.mapping.ListLayers(mxd, "parks")[0]
+for df in dfs:
+  print df, df.name
+  if df.name != "Parks":
+     df2 = arcpy.mapping.ListDataFrames(mxd, df.name)[0]
+     print df2
+mxd.saveACopy("f:/python/Homework/Data/Exercise10/Austin_TX_2.mxd")
+
 
